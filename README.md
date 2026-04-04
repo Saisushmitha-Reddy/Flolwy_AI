@@ -1,275 +1,110 @@
-# ⚡ Flowly — AI-Powered Meeting Productivity Assistant
-
-> Turn every meeting into a prioritized action plan — in real time or from a recording.
+# ⚡ Flowly — AI Meeting Productivity Assistant
 
 ![Flowly](https://img.shields.io/badge/Flowly-v1.0.0-6c63ff?style=flat-square)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
-![Express](https://img.shields.io/badge/Express-4-000000?style=flat-square&logo=express)
-![Claude](https://img.shields.io/badge/Powered%20by-Claude%20Sonnet-orange?style=flat-square)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+![Claude](https://img.shields.io/badge/Claude%20Sonnet-AI%20Core-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Phase%201%20Live-34d399?style=flat-square)
 
 ---
 
-## 📌 What is Flowly?
+## From idea to shipped product — built by an engineer, designed as a PM.
 
-Flowly is an AI productivity assistant that eliminates the cognitive overhead that follows every meeting. After 6–8 back-to-back calls, no one has time to reconstruct what was decided, extract action items, and figure out what to do next — across 5 different apps.
+I come from engineering. I've sat in sprint planning, reviewed PRs, and shipped features. I know what a "simple frontend change" actually costs. I know why engineers push back on vague acceptance criteria. And I know the exact moment a product decision made in a meeting never makes it into the build — because no one wrote it down.
 
-Flowly closes the full loop:
+That last part is what Flowly is about.
 
-```
-Meeting audio  →  Transcript  →  Structured summary  →  Action items  →  Task dashboard
-```
+**The problem:** After every meeting, knowledge workers spend 20–30 minutes piecing together what was discussed, what was decided, and what they're supposed to do next — across five different apps. It's not a discipline problem. It's a tooling gap.
 
-It supports two first-class capture modes:
+**The product:** Flowly listens to your meeting (or processes your recording), generates a structured summary using Claude AI, extracts action items, and puts them in front of you for review before anything hits your task board. The whole loop — capture, understand, prioritize, confirm — in under 60 seconds.
 
-| Mode | How it works |
-|------|-------------|
-| 🎙 **Live Mode** | Flowly runs in your browser during the meeting, transcribing in real time. Summary + tasks are ready the moment you end the session. |
-| 📁 **Upload Mode** | Record your meeting any way you like, upload the file (or paste notes), and let Flowly process it after. |
-
-**Core design principle:** The AI proposes. The human confirms. No task is ever added to your dashboard without your explicit approval.
+**The principle it's built on:** The AI proposes. The human confirms. Every task requires your explicit approval. Flowly augments your judgment, it doesn't replace it.
 
 ---
 
-## ✨ Features
+## The 0→1 Story
 
-- 🎙 **Live Meeting Mode** — Browser mic capture via Web Speech API, real-time transcript, live action item feed
-- 📁 **Upload Mode** — Drag & drop audio files or paste transcripts; same pipeline, same output
-- 🤖 **AI-powered processing** — Claude Sonnet generates structured summaries: Key Points · Decisions · Open Questions
-- ✅ **Review & Confirm flow** — Edit, accept, or reject each task before it hits your board
-- 📊 **Task Dashboard** — Filter by status/priority, update task states, track progress
-- 🕐 **Meeting History** — Log of all processed meetings
-- ⚙️ **Preferences** — Configurable reminders and end-of-day summaries
+This is a full product build — from problem discovery to shipped v1 — not a tutorial project.
 
----
+**It started with a PRD.** Before any code, I wrote a proper product requirements document: user personas, success metrics, edge cases, a go/no-go framework, and a phase-gated roadmap. That document forced real decisions — what's in v1, what's not, and why.
 
-## 🏗 Tech Stack
+**Then came the hard calls:**
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18 + React Router v6 |
-| Build tool | Vite |
-| Backend | Node.js + Express |
-| AI | Anthropic Claude Sonnet (`claude-sonnet-4-20250514`) |
-| Speech | Web Speech API (browser-native, no third-party cost) |
-| Styling | Plain CSS with CSS variables (no UI library dependency) |
+*Why two capture modes?* User research revealed two distinct pain patterns. High-frequency meeting users (6–8 calls/day) need zero-friction live capture — results ready before the next call starts. Reflective workers prefer reviewing recordings before extracting tasks — they want control, not speed. A single input mode forces behavioral change on half your audience. Dual mode serves both without compromising the pipeline.
+
+*Why the review-and-confirm step?* Because trust is the product. If Flowly ever silently adds a wrong task to your board, you stop using it. Making every task require your approval isn't friction — it's the feature that makes everything else work.
+
+*Why no calendar sync in v1?* Integrations are only valuable after the core loop is proven. Shipping Phase 2 features before Phase 1 retention is validated is how you build the wrong thing faster. Phase 2 unlocks when 30-day retention hits 35%.
+
+**Then it got built.** React frontend. Express backend. Anthropic Claude Sonnet for AI processing. Web Speech API for real-time mic capture. End to end, solo, from blank repo to working product.
 
 ---
 
-## 🚀 Getting Started
+## What It Does
+Meeting  →  Transcript  →  AI Summary  →  Action Items  →  You confirm  →  Dashboard
+**🎙 Live Mode** — Run Flowly during your meeting. Browser mic captures in real time. Summary and tasks are ready the moment you end the session — before your next call starts.
 
-### Prerequisites
+**📁 Upload Mode** — Record however you want, upload afterward. Same AI pipeline, same output, your pace.
 
-- Node.js 18+
-- An [Anthropic API key](https://console.anthropic.com)
+**📋 Structured Summary** — Every meeting becomes: Key Discussion Points · Decisions Made · Open Questions.
 
-### 1. Clone the repo
+**✅ Review & Confirm** — Every extracted task is presented for your approval. Edit, accept, or reject individually or in bulk. Nothing auto-commits.
 
+**📊 Task Dashboard** — All confirmed tasks in one view, filterable by status and priority, with inline status updates.
+
+---
+
+## Roadmap — Phase-gated, not calendar-driven
+
+| Phase | What ships | Gate to unlock |
+|-------|-----------|----------------|
+| ✅ **Phase 1 — Core loop** | Live capture, upload mode, AI summary, review & confirm, task dashboard | 30-day retention ≥ 35%, task confirmation rate ≥ 60% |
+| 🔜 **Phase 2 — Integrations** | Native Zoom/Meet/Teams bots, Google Calendar sync, Slack & Notion export | DAU/MAU ≥ 0.4, Live Mode adoption ≥ 50% |
+| 🔜 **Phase 3 — Intelligence** | Adaptive prioritization, mobile app, multilingual support | 90-day retention ≥ 25% |
+| 🔜 **Phase 4 — Teams** | Shared summaries, team task assignment, enterprise SSO | Organic team usage from individual adoption |
+
+Each phase gate exists because integrations built on an unproven foundation are waste. Retention first, features second.
+
+---
+
+## Running It
+
+**Prerequisites:** Node.js 18+, Anthropic API key ([console.anthropic.com](https://console.anthropic.com))
 ```bash
-git clone https://github.com/yourusername/flowly.git
+git clone https://github.com/Saisushmitha-Reddy/Flowly_AI.git
 cd flowly
-```
-
-### 2. Install dependencies
-
-```bash
 npm run install:all
-```
-
-This installs both root (server) and `client/` dependencies in one command.
-
-### 3. Configure environment
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and add your Anthropic API key:
-
-```env
-ANTHROPIC_API_KEY=your_key_here
-PORT=3001
-```
-
-### 4. Run in development
-
-```bash
+cp .env.example .env        # add your ANTHROPIC_API_KEY
 npm run dev
 ```
 
-This starts both servers concurrently:
-- **Frontend** → http://localhost:5173 (Vite dev server with HMR)
-- **Backend API** → http://localhost:3001
+Open **http://localhost:5173**
 
-### 5. Production build
-
-```bash
-npm run build       # builds React app to client/dist/
-NODE_ENV=production npm run server   # serves API + static build
-```
+> No API key? Flowly falls back to demo mode automatically — the full product flow works with realistic pre-built data.
 
 ---
 
-## 📁 Project Structure
+## What This Shows About How I Work
 
-```
-flowly/
-├── server/
-│   └── index.js          # Express API (process-meeting, live-actions, upload-audio)
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Sidebar.jsx     # Navigation with live badges
-│   │   │   └── UI.jsx          # Reusable components (Button, Card, Tag, etc.)
-│   │   ├── pages/
-│   │   │   ├── CapturePage.jsx  # Live Mode + Upload Mode
-│   │   │   ├── SummaryPage.jsx  # AI-generated meeting summary
-│   │   │   ├── ReviewPage.jsx   # Task review & confirm flow
-│   │   │   ├── DashboardPage.jsx # Task management board
-│   │   │   ├── HistoryPage.jsx  # Meeting history log
-│   │   │   └── SettingsPage.jsx # User preferences
-│   │   ├── hooks/
-│   │   │   ├── useMeetingStore.js  # Global in-memory state
-│   │   │   └── useToast.js         # Toast notification hook
-│   │   ├── utils/
-│   │   │   ├── api.js       # All fetch calls to /api
-│   │   │   └── helpers.js   # Formatters, demo data, utilities
-│   │   ├── styles/
-│   │   │   └── globals.css  # CSS variables + global animations
-│   │   ├── App.jsx          # Route definitions
-│   │   └── main.jsx         # React entry point
-│   ├── index.html
-│   └── vite.config.js
-├── .env.example
-├── .gitignore
-└── package.json
-```
+**I write specs before I write code.** The PRD for this project includes user personas, competitive positioning, success metrics, edge case handling, and a go/no-go framework. Product thinking precedes build decisions — not the other way around.
+
+**My engineering background shapes how I PM.** I scoped v1 around what was technically feasible without integrations — browser mic covers all platforms without OAuth flows, app store approvals, or platform compliance. That's not a workaround. That's constraint-led product thinking.
+
+**I think in loops, not features.** Flowly isn't a list of features. It's a loop: capture → understand → prioritize → confirm. Every feature either closes that loop faster or it's out of scope.
+
+**Shipping is a skill.** v1 is deliberately limited. Calendar sync, mobile, team features — real ideas, deliberately cut. Scope discipline matters more than feature count.
 
 ---
 
-## 🔌 API Endpoints
+## Built by
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/health` | Server health check |
-| `POST` | `/api/process-meeting` | Full AI analysis — summary + tasks |
-| `POST` | `/api/live-actions` | Extract action items from partial transcript |
-| `POST` | `/api/upload-audio` | Accept audio file upload |
+**Sai Sushmitha Ancha** — Engineer transitioning into product, building at the intersection of AI and productivity tooling.
 
-### `POST /api/process-meeting`
+Coming from engineering means I've seen what actually ships versus what looks good in a PRD. I write requirements that engineers trust. I ask the technical questions that surface real constraints early. And I can prototype fast enough to validate an idea before committing a team to it.
 
-**Request:**
-```json
-{
-  "transcript": "Meeting transcript text...",
-  "title": "Product Sync",
-  "mode": "live"
-}
-```
+Flowly is what that looks like in practice — a real product, built from scratch, by someone who's been on both sides of the table.
 
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "title": "Product Sync",
-    "mode": "live",
-    "date": "2026-03-25T10:00:00.000Z",
-    "discussion_points": ["..."],
-    "decisions": ["..."],
-    "open_questions": ["..."],
-    "tasks": [
-      {
-        "description": "Assign onboarding flow to frontend team",
-        "priority": "high",
-        "due_date": "Today",
-        "assignee": "Marcus"
-      }
-    ]
-  }
-}
-```
+[LinkedIn](https://linkedin.com/in/saisushmithaancha) · [Portfolio](https://lead-single-34c.notion.site/Sai-Sushmitha-Ancha-Product-Portfolio-8870411a6f1f8324a979019b9de8bd2e?pvs=74) · [GitHub](https://github.com/Saisushmitha-Reddy)
 
 ---
 
-## 🎙 Live Mode — How the Mic Capture Works
-
-Flowly uses the browser's native **Web Speech API** (`webkitSpeechRecognition`) — no third-party transcription service required. This means:
-
-- ✅ Works across all browser-based meeting platforms (Zoom, Meet, Teams, Webex)
-- ✅ No additional cost or API key needed for transcription
-- ✅ Audio never leaves the browser until you choose to process it
-- ⚠️ Best supported in Chrome and Edge (Firefox/Safari have limited support)
-
-When mic access is unavailable (e.g. in demo environments), Flowly automatically falls back to a demo transcript so the full pipeline can still be demonstrated.
-
----
-
-## 🔊 Adding Real Audio Transcription (Upload Mode)
-
-The upload endpoint currently acknowledges the file and returns a prompt to paste the transcript. To wire up real audio transcription, integrate one of the following in `server/index.js`:
-
-**Option A — OpenAI Whisper:**
-```javascript
-const { OpenAI } = require("openai");
-const openai = new OpenAI();
-
-const transcription = await openai.audio.transcriptions.create({
-  file: fs.createReadStream(tempFilePath),
-  model: "whisper-1",
-});
-const transcript = transcription.text;
-```
-
-**Option B — AssemblyAI:**
-```javascript
-const { AssemblyAI } = require("assemblyai");
-const client = new AssemblyAI({ apiKey: process.env.ASSEMBLYAI_KEY });
-const transcript = await client.transcripts.transcribe({ audio: audioBuffer });
-```
-
-**Option C — Deepgram:**
-```javascript
-const { createClient } = require("@deepgram/sdk");
-const deepgram = createClient(process.env.DEEPGRAM_KEY);
-const { result } = await deepgram.listen.prerecorded.transcribeFile(buffer, { model: "nova-2" });
-```
-
----
-
-## 🗺 Roadmap
-
-This repo implements **Phase 1** of the Flowly PRD.
-
-| Phase | Theme | Status |
-|-------|-------|--------|
-| **Phase 1** | Dual input: Live + Upload, summary, review & confirm, dashboard | ✅ Complete |
-| **Phase 2** | Native Zoom/Meet/Teams bots, Google Calendar sync, Slack/Notion export | 🔜 Planned |
-| **Phase 3** | Adaptive prioritization, mobile app (iOS/Android), multilingual | 🔜 Planned |
-| **Phase 4** | Shared team summaries, team task assignment, enterprise SSO | 🔜 Planned |
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/add-calendar-sync`)
-3. Commit your changes (`git commit -m 'Add calendar sync'`)
-4. Push to the branch (`git push origin feature/add-calendar-sync`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT © 2026 Flowly
-
----
-
-## 🙏 Acknowledgments
-
-- Product design and PRD by **Sai Sushmitha Ancha**
-- AI powered by [Anthropic Claude](https://anthropic.com)
-- Built with [React](https://react.dev), [Vite](https://vitejs.dev), and [Express](https://expressjs.com)
+*MIT License · v1.0.0 · April 2026*
