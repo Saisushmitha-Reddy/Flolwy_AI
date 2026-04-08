@@ -2,7 +2,7 @@
 
 ## 📹 Demo
 
-[Watch the demo here →](https://www.loom.com/share/98e10b2fc49447d3bdff4ddc0b92d923)
+[Watch the demo here →](https://www.loom.com/share/98e10b2fc49447d3bdff4ddc0b92d923)((https://loom.com/share/abc123)
 
 ![Flowly](https://img.shields.io/badge/Flowly-v1.0.0-6c63ff?style=flat-square)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)
